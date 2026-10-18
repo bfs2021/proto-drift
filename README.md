@@ -1,3 +1,5 @@
+
+
 # proto-drift
 
 > Detect drift between protobuf/gRPC definitions and the generated stubs you committed.
