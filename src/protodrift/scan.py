@@ -181,6 +181,9 @@ def scan(root: Path, cfg: dict | None = None) -> list[Finding]:
 def load_config(root: Path) -> dict:
     path = Path(root) / ".proto-drift.toml"
     if path.is_file():
-        with path.open("rb") as handle:
-            return tomllib.load(handle)
+        try:
+            with path.open("rb") as handle:
+                return tomllib.load(handle)
+        except tomllib.TOMLDecodeError as exc:
+            raise ValueError(f"invalid .proto-drift.toml: {exc}") from exc
     return {}

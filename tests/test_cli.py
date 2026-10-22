@@ -71,6 +71,13 @@ def test_config_gates_can_disable_every_type(tmp_path, capsys):
     assert "CRITICAL" in capsys.readouterr().out  # still reported, just not gating
 
 
+def test_malformed_config_exits_two(tmp_path, capsys):
+    (tmp_path / ".proto-drift.toml").write_text("not = valid [\n", encoding="utf-8")
+
+    assert main(["scan", str(tmp_path)]) == 2
+    assert "invalid .proto-drift.toml" in capsys.readouterr().err
+
+
 def test_check_honours_fail_gates(tmp_path, capsys):
     drift_tree(tmp_path)
     write(tmp_path, ".proto-drift.toml",

@@ -150,7 +150,11 @@ def _cmd_check(args) -> int:
 
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
-    return _cmd_scan(args) if args.command == "scan" else _cmd_check(args)
+    try:
+        return _cmd_scan(args) if args.command == "scan" else _cmd_check(args)
+    except ValueError as exc:
+        print(f"proto-drift: {exc}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":
