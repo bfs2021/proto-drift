@@ -2,6 +2,8 @@
 
 # proto-drift
 
+![CI](https://github.com/yunaremaia/proto-drift/actions/workflows/ci.yml/badge.svg) ![License](https://img.shields.io/github/license/yunaremaia/proto-drift) ![PyPI](https://img.shields.io/pypi/v/proto-drift)
+
 > Detect drift between protobuf/gRPC definitions and the generated stubs you committed.
 
 ## The Problem
